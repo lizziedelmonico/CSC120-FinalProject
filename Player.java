@@ -3,13 +3,15 @@ import java.util.ArrayList;
 public class Player{
     ArrayList cards = new ArrayList<String>();
     ArrayList inventory = new ArrayList<String>();
+    String name;
 
     public void book(){
-
+        inventory.add("Card Binder");
     }
 
-    public void gain(){
-
+    public void gain(String card){
+        cards.remove(card);
+        inventory.add(card);
     }
 
     /*
