@@ -1,8 +1,8 @@
 import java.util.ArrayList;
 
 public class Player{
-    ArrayList cards = new ArrayList<String>();
-    ArrayList inventory = new ArrayList<String>();
+    ArrayList<String> cards = new ArrayList<String>();
+    ArrayList<String> inventory = new ArrayList<String>();
     String name;
 
     public void book(){
