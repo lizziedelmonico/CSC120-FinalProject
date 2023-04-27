@@ -1,12 +1,12 @@
 import java.util.ArrayList;
 
-public class Location {
+public class Location{
     private String name;
     private String description;
     private ArrayList<String> cards = new ArrayList<String>();
     private int numOfCards;
     
-    public Location(String name, String description){
+    public Location (String name, String description){
         this.name = name;
         this.description = description; 
         cards = new ArrayList<String>();
