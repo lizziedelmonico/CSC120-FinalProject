@@ -1,11 +1,4 @@
-public class Forest{
+public class Forest extends Location{
     
-    public void description(){
 
-    }
-
-    public String villager1(String response){
-
-        return response;
-    }
 }

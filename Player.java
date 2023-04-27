@@ -4,6 +4,7 @@ public class Player{
     ArrayList<String> cards = new ArrayList<String>();
     ArrayList<String> inventory = new ArrayList<String>();
     String name;
+    private String location;
 
     public void book(){
         inventory.add("Card Binder");
@@ -25,8 +26,16 @@ public class Player{
         return direction;
     }
 
+    public String getLocation(){
+        return location;
+    }
+
     public void grab(String item){
         inventory.add(item);
+    }
+
+    public String examine(String item){
+        return item;
     }
 
     public String drop(String item){
