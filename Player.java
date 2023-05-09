@@ -1,46 +1,76 @@
 import java.util.ArrayList;
+import java.util.Scanner;
 
-public class Player{
-    ArrayList<String> cards = new ArrayList<String>();
-    ArrayList<String> inventory = new ArrayList<String>();
-    String name;
-    private String location;
+public class Player {
+    public static String name;
+    public ArrayList<Card> inventory;
+    Location currentLocation;
+    static Scanner scanner = new Scanner(System.in);
 
-    public void book(){
-        inventory.add("Card Binder");
+    public Player(String name, Location currentLocation){
+        this.inventory = new ArrayList<Card>();
+        this.currentLocation = currentLocation;
     }
 
-    /*
-     * Materializes card to be used for its intended purpose. 
-     */
-    public void gain(String card){
-        cards.remove(card);
-        inventory.add(card);
+    public Location stringToLocation(){
+        String location;
+        System.out.println("Where would you like to go?");
+        location = scanner.next();
+        if (location == "Forest"){
+            return Location.forest;
+        } else if (location == "Village"){
+            return Location.village;
+        } else if (location == "City of Love"){
+            return Location.love;
+        } else if (location == "Gambling City"){
+            return Location.gambling;
+        } else if (location == "City of Prizes"){
+            return Location.prizes;
+        } else if (location == "City of Magic"){
+            return Location.magic;
+        } else if (location == "Port City"){
+            return Location.port;
+        } else {
+            return null;
+        }
     }
 
-    /*
-     * Allows Player to move between locations.
-     */
-    public String move(String direction){
-        //will take in String direction such as "north" "south" "east" "west" and transport Player to the corresponding location if that direction is feasable.
-        return direction;
+    public void move(){
+        Location newLocation = stringToLocation();
+        if (newLocation == null){
+            System.out.println("This location does not exist, silly goose!");
+        } else if (newLocation == currentLocation){
+            System.out.println("You're already here, silly goose!");
+        } else {
+            this.currentLocation = newLocation;
+        }
+    }
+    
+    public void addCard(Card c){
+        if (currentLocation.hasCard(c)){
+            this.currentLocation.removeCard(c, this.currentLocation);
+            System.out.println("Adding card to binder... ");
+            inventory.add(c);
+            System.out.println("Successfully added " + c.getName() + " to the binder.");
+        }
+
     }
 
-    public String getLocation(){
-        return location;
+
+    public void viewBinder(){
+        System.out.print(inventory);
     }
 
-    public void grab(String item){
-        inventory.add(item);
+    public boolean binderFull(){
+        if (inventory.size() == 10){
+            return true;
+        }
+        else{
+            return false;
+        }
     }
 
-    public String examine(String item){
-        return item;
+    public void examineLocation() {
     }
 
-    public String drop(String item){
-        inventory.remove(item);
-        String dropped = ("You are no longer carrying " + item);
-        return dropped;
-    }
 }
